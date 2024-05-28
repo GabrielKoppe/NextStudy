@@ -1,0 +1,7 @@
+- Criando NextJS
+  yarn create next-app
+
+yarn dev --> rodar em dev
+
+Pages Version
+App Version

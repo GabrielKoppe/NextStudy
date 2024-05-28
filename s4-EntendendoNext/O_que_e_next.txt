@@ -1,0 +1,9 @@
+NextJS --> Framework baseado na lib React
+
+O que o Next faz?
+
+- Renderização pelo dado do servidor (Server side rendering - SSR)
+- Geração de paginas estáticas (Static Site Generation - SSG)
+- Possui por padrão seu file-system routing
+- Zero configuração
+
