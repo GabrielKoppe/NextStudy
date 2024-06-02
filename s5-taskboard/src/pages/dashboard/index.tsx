@@ -2,11 +2,25 @@ import Head from 'next/head';
 import styles from './styles.module.css';
 import { GetServerSideProps } from 'next';
 import { getSession } from 'next-auth/react';
-import TextArea from '@/component/header/textArea';
+import TextArea from '@/components/textArea';
 import { FiShare2 } from 'react-icons/fi';
 import { FaTrash } from 'react-icons/fa';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 export default function Dashboard() {
+	const [input, setInput] = useState('');
+	const [publicTask, setPublicTask] = useState(false);
+
+	const handleChangePublic = (e: ChangeEvent<HTMLInputElement>) => {
+		setPublicTask(e.target.checked);
+	};
+
+	const handleRegisterTask = (e: FormEvent) => {
+		e.preventDefault();
+
+		if (input === '') return;
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -17,10 +31,21 @@ export default function Dashboard() {
 				<section className={styles.content}>
 					<div className={styles.contentForm}>
 						<h1 className={styles.title}>Qual sua tarefa?</h1>
-						<form action="">
-							<TextArea placeholder="Digite qual a sua tarefa..." />
+						<form onSubmit={handleRegisterTask}>
+							<TextArea
+								placeholder="Digite qual a sua tarefa..."
+								value={input}
+								onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
+									setInput(e.target.value)
+								}
+							/>
 							<div className={styles.checkboxArea}>
-								<input type="checkbox" className={styles.checkbox} />
+								<input
+									type="checkbox"
+									className={styles.checkbox}
+									checked={publicTask}
+									onChange={handleChangePublic}
+								/>
 								<label>Deixar tarefa publica?</label>
 							</div>
 
