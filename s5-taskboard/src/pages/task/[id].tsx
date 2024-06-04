@@ -16,6 +16,8 @@ import TextArea from '@/components/textArea';
 import { ChangeEvent, FormEvent, useState } from 'react';
 import { useSession } from 'next-auth/react';
 
+import { FaTrash } from 'react-icons/fa';
+
 interface TaskProps {
 	item: {
 		tarefa: string;
@@ -55,6 +57,16 @@ export default function Task({ item, allComments }: TaskProps) {
 				name: session?.user?.name,
 				taskId: item?.taskId,
 			});
+
+			const data = {
+				id: docRef.id,
+				comment: input,
+				user: session?.user?.email,
+				name: session?.user?.name,
+				taskId: item?.taskId,
+			};
+
+			setComments((oldComments) => [...oldComments, data]);
 
 			setInput('');
 		} catch (err) {
@@ -100,6 +112,14 @@ export default function Task({ item, allComments }: TaskProps) {
 
 				{comments.map((item) => (
 					<article key={item.id} className={styles.comment}>
+						<div className={styles.headComment}>
+							<label className={styles.labelComment}>{item.name}</label>
+							{item.user === session?.user?.email && (
+								<button className={styles.buttonTrash}>
+									<FaTrash size={18} color="#ea3140" />
+								</button>
+							)}
+						</div>
 						<p>{item.comment}</p>
 					</article>
 				))}
