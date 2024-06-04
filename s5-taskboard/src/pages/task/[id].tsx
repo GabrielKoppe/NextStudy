@@ -6,6 +6,7 @@ import { db } from '../../services/firebaseConnection';
 import {
 	addDoc,
 	collection,
+	deleteDoc,
 	doc,
 	getDoc,
 	getDocs,
@@ -74,6 +75,21 @@ export default function Task({ item, allComments }: TaskProps) {
 		}
 	};
 
+	const handleDeleteComment = async (id: string) => {
+		try {
+			const docRef = doc(db, 'comments', id);
+			await deleteDoc(docRef);
+
+			setComments((oldComments) =>
+				oldComments.filter((item) => item.id !== id),
+			);
+
+			alert('Comentário deletado');
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -115,7 +131,10 @@ export default function Task({ item, allComments }: TaskProps) {
 						<div className={styles.headComment}>
 							<label className={styles.labelComment}>{item.name}</label>
 							{item.user === session?.user?.email && (
-								<button className={styles.buttonTrash}>
+								<button
+									className={styles.buttonTrash}
+									onClick={() => handleDeleteComment(item.id)}
+								>
 									<FaTrash size={18} color="#ea3140" />
 								</button>
 							)}
