@@ -12,12 +12,24 @@ interface DataProps {
 		url: string;
 	};
 }
+async function delayFetch(url: string, delay: number) {
+	await new Promise((resolve) => setTimeout(resolve, delay));
+	const response = await fetch(url);
+	return response.json();
+}
+// async function getData() {
+// 	const response = await fetch(
+// 		'https://api.github.com/users/GabrielKoppe/repos',
+// 	);
+// 	return response.json();
+// }
 
 async function getData() {
-	const response = await fetch(
+	const data = await delayFetch(
 		'https://api.github.com/users/GabrielKoppe/repos',
+		2000,
 	);
-	return response.json();
+	return data;
 }
 
 export default async function Home() {
