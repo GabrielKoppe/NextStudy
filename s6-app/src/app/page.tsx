@@ -27,7 +27,7 @@ async function delayFetch(url: string, delay: number) {
 async function getData() {
 	const data = await delayFetch(
 		'https://api.github.com/users/GabrielKoppe/repos',
-		2000,
+		1500,
 	);
 	return data;
 }
