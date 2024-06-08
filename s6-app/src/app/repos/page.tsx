@@ -14,7 +14,7 @@ interface DataProps {
 	};
 }
 
-export default function Repositorios() {
+export default function Repos() {
 	const [repos, setRepos] = useState<DataProps[]>([]);
 
 	async function getData() {

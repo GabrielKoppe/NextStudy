@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import styles from './page.module.css';
+import OwnerRepo from '@/components/OwnerRepo';
 
 interface DataProps {
 	id: number;
@@ -44,6 +45,11 @@ export default async function Home() {
 			{data.map((item) => (
 				<div key={item.id}>
 					<strong>Repositório: </strong> <a>{item.name}</a>
+					<br />
+					<OwnerRepo
+						avatar_url={item.owner.avatar_url}
+						name={item.owner.login}
+					/>
 					<br />
 				</div>
 			))}
