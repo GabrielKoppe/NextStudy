@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { BsArrowRightSquare } from 'react-icons/bs';
 import Input from '@/components/input';
+import GameCard from '@/components/gameCard';
 
 async function getDailyGame(): Promise<GameProps> {
 	try {
@@ -17,8 +18,20 @@ async function getDailyGame(): Promise<GameProps> {
 	}
 }
 
+async function getGamesData(): Promise<GameProps[]> {
+	try {
+		const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=games`, {
+			next: { revalidate: 320 },
+		});
+		return res.json();
+	} catch (error) {
+		throw new Error('Failed to fetch data');
+	}
+}
+
 export default async function Home() {
 	const dailyGame = await getDailyGame();
+	const data = await getGamesData();
 
 	return (
 		<main className="w-full">
@@ -48,6 +61,12 @@ export default async function Home() {
 					</section>
 				</Link>
 				<Input />
+				<h2 className="text-lg font-bold mt-8 mb-5">Jogos para conhecer</h2>
+				<section className="grid gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+					{data.map((item) => (
+						<GameCard key={item.id} data={item} />
+					))}
+				</section>
 			</Container>
 		</main>
 	);
