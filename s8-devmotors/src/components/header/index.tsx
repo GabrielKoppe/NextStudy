@@ -27,7 +27,7 @@ export default function Header() {
 					<div className={styles.logo}>
 						<Link href="/">Dev Motors</Link>
 					</div>
-					<nav>
+					<nav className={styles.nav}>
 						<Link href="/">HOME</Link>
 						<Link href="/#servicos">SERVIÇOS</Link>
 						<Link href="/#contatos">CONTATOS</Link>
