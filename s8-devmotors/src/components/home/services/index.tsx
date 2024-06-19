@@ -6,7 +6,7 @@ import { HomeDataType } from '@/utils/types/home.type';
 
 export default function Services({ object }: HomeDataType) {
 	return (
-		<Container>
+		<>
 			<section className={styles.containerAbout} id="servicos">
 				<article className={styles.innerAbout}>
 					<h1 className={styles.title}>Sobre</h1>
@@ -41,6 +41,6 @@ export default function Services({ object }: HomeDataType) {
 					</article>
 				))}
 			</section>
-		</Container>
+		</>
 	);
 }
