@@ -1,5 +1,7 @@
+import Container from '@/components/container';
 import Hero from '@/components/hero';
-import HomeHeader from '@/components/homeheader';
+import HomeHeader from '@/components/home/homeheader';
+import Services from '@/components/home/services';
 import { getDataHome } from '@/utils/actions/get-data';
 import { Phone } from 'lucide-react';
 
@@ -16,6 +18,7 @@ export default async function Home() {
 				bannerUrl={object.metadata.banner.url}
 				icon={<Phone size={20} color="#fff" />}
 			/>
+			<Services object={object} />
 		</main>
 	);
 }
