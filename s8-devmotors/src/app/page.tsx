@@ -1,5 +1,7 @@
+import Hero from '@/components/hero';
 import HomeHeader from '@/components/homeheader';
 import { getDataHome } from '@/utils/actions/get-data';
+import { Phone } from 'lucide-react';
 
 export default async function Home() {
 	const { object } = await getDataHome();
@@ -7,6 +9,13 @@ export default async function Home() {
 	return (
 		<main>
 			<HomeHeader />
+			<Hero
+				heading={object.metadata.heading}
+				buttonUrl={object.metadata.cta_button.url}
+				buttonTitle={object.metadata.cta_button.title}
+				bannerUrl={object.metadata.banner.url}
+				icon={<Phone size={20} color="#fff" />}
+			/>
 		</main>
 	);
 }
