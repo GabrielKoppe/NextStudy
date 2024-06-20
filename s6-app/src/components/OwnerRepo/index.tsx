@@ -14,6 +14,7 @@ export default function OwnerRepo({ avatar_url, name }: OwnerRepoProps) {
 			{show && (
 				<>
 					<Image
+						sizes="(max-width: 480px) 100vw, (max-width:1024px) 75vw, 50vw"
 						src={avatar_url}
 						alt="Foto avatar do usuário"
 						width={34}

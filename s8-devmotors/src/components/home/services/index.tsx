@@ -19,6 +19,7 @@ export default function Services({ object }: HomeDataType) {
 						quality={100}
 						fill
 						className={styles.imageAbout}
+						sizes="(max-width: 480px) 100vw, (max-width:1024px) 75vw, 50vw"
 					/>
 				</div>
 			</section>
@@ -34,6 +35,7 @@ export default function Services({ object }: HomeDataType) {
 								quality={100}
 								fill
 								className={styles.imageService}
+								sizes="(max-width: 480px) 100vw, (max-width:1024px) 75vw, 50vw"
 							/>
 						</div>
 						<p>{service.description}</p>

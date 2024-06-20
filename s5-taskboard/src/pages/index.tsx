@@ -22,6 +22,7 @@ export default function Home({ posts, comments }: HomeProps) {
 			<main className={styles.main}>
 				<div className={styles.logoContent}>
 					<Image
+						sizes="(max-width: 480px) 100vw, (max-width:1024px) 75vw, 50vw"
 						className={styles.hero}
 						alt="Logo Tarefas+"
 						src={heroImg}

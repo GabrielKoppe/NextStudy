@@ -50,11 +50,6 @@ export default function Footer({ object }: HomeDataType) {
 
 				{object.metadata.cta_button.title}
 			</a>
-
-			<p className={styles.copyText}>
-				Todos os direitos reservados {object.title} @
-				{`${new Date().getFullYear()}`}
-			</p>
 		</footer>
 	);
 }
