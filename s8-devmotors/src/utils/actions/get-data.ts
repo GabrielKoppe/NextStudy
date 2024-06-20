@@ -1,4 +1,4 @@
-import { HomeDataType, SubMenuType } from '../types/home.type';
+import { HomeDataType, PageType, SubMenuType } from '../types/home.type';
 
 export async function getDataHome(): Promise<HomeDataType> {
 	try {
@@ -29,5 +29,29 @@ export async function getSubMenu(): Promise<SubMenuType> {
 		return await res.json();
 	} catch (error) {
 		throw new Error('Failed to fetch data');
+	}
+}
+
+export async function getItemBySlug(itemSlug: string): Promise<PageType> {
+	const baseUrl = `${process.env.NEXT_PUBLIC_API_URL}/objects`;
+	const queryParams = new URLSearchParams({
+		query: JSON.stringify({
+			slug: itemSlug,
+		}),
+		props: 'slug,title,content,metadata',
+		read_key: process.env.READ_KEY as string,
+	});
+
+	try {
+		const res = await fetch(`${baseUrl}?${queryParams.toString()}`, {
+			next: { revalidate: 120 },
+		});
+		if (!res.ok) {
+			throw new Error('Failed to get Slug');
+		}
+
+		return await res.json();
+	} catch (error) {
+		throw new Error('Failed to get Slug');
 	}
 }

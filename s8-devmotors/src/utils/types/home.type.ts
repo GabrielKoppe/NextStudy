@@ -41,3 +41,27 @@ export interface SubMenuType {
 	}[];
 	total: number;
 }
+
+export interface PageType {
+	objects: {
+		slug: string;
+		title: string;
+		content: string;
+		metadata: {
+			banner: Image;
+			button: {
+				title: string;
+				url: string;
+			};
+			description: {
+				title: string;
+				text: string;
+				banner: Image;
+				button_active: boolean;
+				button_title: string | null;
+				button_url: string | null;
+			};
+		};
+	}[];
+	total: number;
+}
