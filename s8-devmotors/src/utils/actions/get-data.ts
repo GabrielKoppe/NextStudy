@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation';
 import { HomeDataType, PageType, SubMenuType } from '../types/home.type';
 
 export async function getDataHome(): Promise<HomeDataType> {
@@ -52,6 +53,6 @@ export async function getItemBySlug(itemSlug: string): Promise<PageType> {
 
 		return await res.json();
 	} catch (error) {
-		throw new Error('Failed to get Slug');
+		redirect('/');
 	}
 }
