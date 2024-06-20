@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import styles from './styles.module.scss';
 import React from 'react';
-import Container from '@/components/container';
 import { HomeDataType } from '@/utils/types/home.type';
 
 export default function Services({ object }: HomeDataType) {

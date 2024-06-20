@@ -1,7 +1,6 @@
 import Container from '@/components/container';
 import Hero from '@/components/hero';
 import Footer from '@/components/home/footer';
-import HomeHeader from '@/components/home/subMenu';
 import Services from '@/components/home/services';
 import { getDataHome, getSubMenu } from '@/utils/actions/get-data';
 import { Phone } from 'lucide-react';
