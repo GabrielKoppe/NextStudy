@@ -5,8 +5,9 @@ import styles from './styles.module.scss';
 
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { SubMenuType } from '@/utils/types/home.type';
 
-export default function HomeHeader() {
+export default function SubMenu({ menu }: { menu: SubMenuType }) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const handleResize = () => {

@@ -33,3 +33,11 @@ type Image = {
 	url: string;
 	imgix_url: string;
 };
+
+export interface SubMenuType {
+	objects: {
+		slug: string;
+		title: string;
+	}[];
+	total: number;
+}
