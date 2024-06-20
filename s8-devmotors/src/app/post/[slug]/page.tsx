@@ -4,6 +4,41 @@ import Hero from '@/components/hero';
 import { Phone } from 'lucide-react';
 import Container from '@/components/container';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+	params: { slug },
+}: {
+	params: { slug: string };
+}): Promise<Metadata> {
+	try {
+		const { objects } = await getItemBySlug(slug);
+
+		return {
+			title: `Dev Motors - ${objects[0].title}`,
+			description: `${objects[0].metadata.description.text}`,
+			openGraph: {
+				title: `Dev Motors - ${objects[0].title}`,
+				images: [objects[0].metadata.banner.url],
+			},
+			robots: {
+				index: true,
+				follow: true,
+				nocache: true,
+				googleBot: {
+					index: true,
+					follow: true,
+					noimageindex: true,
+				},
+			},
+		};
+	} catch (error) {
+		return {
+			title: 'Dev Motors - Sua Oficina Especializada',
+			description: 'Oficina - Aprendizado Next',
+		};
+	}
+}
 
 export default async function Page({
 	params: { slug },
