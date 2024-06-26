@@ -13,6 +13,37 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Customer {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  phone         String
+  email         String
+  address       String?
+  created_at    DateTime?       @default(now())
+  updated_at    DateTime?       @default(now())
+
+  userId        String?         @db.ObjectId
+  user          User?           @relation(fields: [userId], references: [id])
+
+  tickets       Ticket[]
+}
+
+model Ticket {
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  description   String
+  status        String
+  created_at    DateTime?       @default(now())
+  updated_at    DateTime?       @default(now())
+
+  custumerId    String?         @db.ObjectId
+  custumer      Customer?       @relation(fields: [custumerId], references: [id])
+
+  userId        String?         @db.ObjectId
+  user          User?           @relation(fields: [userId], references: [id])
+}
+
+
 model User {
   id            String          @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
@@ -21,11 +52,12 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
-  Authenticator Authenticator[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  tickets       Ticket[]
+  custumers     Customer[]
 }
 
 model Account {
@@ -68,20 +100,4 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
-}
-
-// Optional for WebAuthn support
-model Authenticator {
-  credentialID         String  @id @map("_id")
-  userId               String  @db.ObjectId
-  providerAccountId    String
-  credentialPublicKey  String
-  counter              Int
-  credentialDeviceType String
-  credentialBackedUp   Boolean
-  transports           String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, credentialID])
 }
