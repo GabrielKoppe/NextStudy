@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FiLoader, FiLock, FiLogOut, FiUser } from 'react-icons/fi';
+import { FiLoader, FiLock, FiLogIn, FiLogOut, FiUser } from 'react-icons/fi';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function Header() {
@@ -30,7 +30,7 @@ export default function Header() {
 
 				{status === 'unauthenticated' && (
 					<button onClick={handleLogin}>
-						<FiLock size={26} color="#4b5563" />
+						<FiLogIn size={26} color="#4b5563" />
 					</button>
 				)}
 
