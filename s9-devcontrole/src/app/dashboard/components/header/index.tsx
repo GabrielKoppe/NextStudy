@@ -11,7 +11,7 @@ export default function DashboardHeader() {
 				Chamados
 			</Link>
 			<Link
-				href="/dashboard/costumers"
+				href="/dashboard/costumer"
 				className="text-white hover:font-bold duration-300"
 			>
 				Clientes
