@@ -2,11 +2,7 @@
 
 import Input from '@/components/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-	RegisterOptions,
-	useForm,
-	UseFormRegisterReturn,
-} from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
 const schema = z.object({
