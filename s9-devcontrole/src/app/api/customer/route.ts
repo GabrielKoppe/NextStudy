@@ -10,7 +10,7 @@ export async function POST(request: Request) {
 		return NextResponse.json({ error: 'Not authorized.' }, { status: 401 });
 	}
 
-	const { name, email, phone, address, userId } = await request.json();
+	const { name, email, phone, address } = await request.json();
 
 	try {
 		await prismaClient.customer.create({
@@ -19,14 +19,14 @@ export async function POST(request: Request) {
 				email,
 				phone,
 				address: address ? address : '',
-				userId,
+				userId: session.user.id,
 			},
 		});
 
 		return NextResponse.json({ message: 'Create customer with success!' });
 	} catch (error) {
 		return NextResponse.json(
-			{ error: 'Failed create new costumer.' },
+			{ error: 'Failed create new customer.' },
 			{ status: 400 },
 		);
 	}
