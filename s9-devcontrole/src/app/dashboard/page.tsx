@@ -1,7 +1,11 @@
 import Link from 'next/link';
 import TicketItem from './components/ticket';
+import getTicket from './customer/actions/getTicket';
 
 export default async function Dashboard() {
+	const tickets = await getTicket();
+	console.log(tickets);
+
 	return (
 		<main className="mt-9 mb-2">
 			<div className="flex justify-between items-center">
@@ -26,9 +30,9 @@ export default async function Dashboard() {
 					</tr>
 				</thead>
 				<tbody>
-					<TicketItem />
-					<TicketItem />
-					<TicketItem />
+					{tickets.map((ticket) => (
+						<TicketItem key={ticket.id} ticket={ticket} />
+					))}
 				</tbody>
 			</table>
 		</main>

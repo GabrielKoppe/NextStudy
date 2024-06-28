@@ -3,7 +3,7 @@ import getCustomers from './actions/getCustomers';
 import CardCostumer from './components/card';
 
 export default async function Customer() {
-	const customers = await getCustomers();
+	const customers  = await getCustomers();
 
 	return (
 		<main className="mt-9 mb-2">

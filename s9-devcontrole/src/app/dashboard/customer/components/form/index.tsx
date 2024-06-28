@@ -39,15 +39,17 @@ export default function NewCustomerForm() {
 	const router = useRouter();
 
 	async function handleRegisterSubmit(data: FormData) {
-		const response = await api.post('/api/customer', {
-			name: data.name,
-			email: data.email,
-			phone: data.phone,
-			address: data.address,
-		});
-
-		router.refresh();
-		router.replace('/dashboard/customer');
+		await api
+			.post('/api/customer', {
+				name: data.name,
+				email: data.email,
+				phone: data.phone,
+				address: data.address,
+			})
+			.then(() => {
+				router.refresh();
+				router.replace('/dashboard/customer');
+			});
 	}
 
 	return (
