@@ -4,7 +4,6 @@ import getTicket from './customer/actions/getTicket';
 
 export default async function Dashboard() {
 	const tickets = await getTicket();
-	console.log(tickets);
 
 	return (
 		<main className="mt-9 mb-2">
@@ -35,6 +34,11 @@ export default async function Dashboard() {
 					))}
 				</tbody>
 			</table>
+			{tickets.length === 0 && (
+				<h1 className="text-gray-600 px-2 mb:px-0">
+					Nenhum chamado aberto foi encontrado!
+				</h1>
+			)}
 		</main>
 	);
 }
